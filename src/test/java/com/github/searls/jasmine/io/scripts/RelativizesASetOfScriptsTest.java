@@ -71,6 +71,19 @@ public class RelativizesASetOfScriptsTest {
 	}
 	
 	@Test
+	public void doesNotRemoveLeadingScriptProtocol() throws Exception {
+		stubbingForFiles(false);
+		String script = "script:function () {};";
+		HashSet<String> sources = new HashSet<String>(asList(script));
+		when(relativizesFilePaths.relativize(eq(from), (File) argThat(is(fileNamed(script))))).thenReturn("panda");
+
+		Set<String> result = subject.relativize(from, sources);
+		
+		assertThat(result, is(LinkedHashSet.class));
+		assertThat(result, hasItems(script));		
+	}
+	
+	@Test
 	public void ignoresLeadingHttpProtocol() throws Exception {
 		stubbingForFiles(true);
 		HashSet<String> sources = new HashSet<String>(asList("http://google.com"));
@@ -86,7 +99,7 @@ public class RelativizesASetOfScriptsTest {
 	public void ignoresLeadingHttpsProtocol() throws Exception {
 		stubbingForFiles(true);
 		HashSet<String> sources = new HashSet<String>(asList("https://google.com"));
-		when(relativizesFilePaths.relativize(isA(File.class),isA(File.class))).thenThrow(new RuntimeException("Not supported!"));
+		//when(relativizesFilePaths.relativize(isA(File.class),isA(File.class))).thenThrow(new RuntimeException("Not supported!"));
 
 		Set<String> result = subject.relativize(from, sources);
 		

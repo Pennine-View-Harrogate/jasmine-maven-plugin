@@ -13,7 +13,7 @@ public class FormatsScriptTagsTest {
 	
 	@Test
 	public void formatsOneScriptNicely() {
-		String expected = "pantsjs";
+		String expected = "pants";
 		
 		String result = subject.format(new HashSet<String>(asList(expected)));
 		
@@ -29,7 +29,17 @@ public class FormatsScriptTagsTest {
 		
 		assertThat(result,containsString(expectedScriptTagFormat(first)+"\n"+expectedScriptTagFormat(second)));
 	}
-			
+
+	@Test
+	public void formatsInlineScriptNicely() {
+		String inlineScript = "script:function() {};";
+		String expected = "function() {};";
+		
+		String result = subject.format(new HashSet<String>(asList(inlineScript)));
+		
+		assertThat(result, containsString(expectedInlineScriptTagFormat(expected)));
+	}
+	
 	private String expectedScriptTagFormat(String scriptName) {
 		return expectedScriptTagFormat(scriptName, "text/javascript");
 	}
@@ -37,5 +47,8 @@ public class FormatsScriptTagsTest {
 	private String expectedScriptTagFormat(String scriptName, String scriptType) {
 		return "<script type=\""+scriptType+"\" src=\""+scriptName+"\"></script>";
 	}
-	
+
+	private String expectedInlineScriptTagFormat(String inlineScript) {
+		return "<script type=\"text/javascript\">" + inlineScript  + "</script>";
+	}
 }
