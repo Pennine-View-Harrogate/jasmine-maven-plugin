@@ -13,7 +13,7 @@ public class FormatsScriptTagsTest {
 	
 	@Test
 	public void formatsOneScriptNicely() {
-		String expected = "pants";
+		String expected = "pantsjs";
 		
 		String result = subject.format(new HashSet<String>(asList(expected)));
 		

@@ -1,6 +1,5 @@
 package com.github.searls.jasmine.format;
 
-import java.util.List;
 import java.util.Set;
 
 public class FormatsScriptTags {

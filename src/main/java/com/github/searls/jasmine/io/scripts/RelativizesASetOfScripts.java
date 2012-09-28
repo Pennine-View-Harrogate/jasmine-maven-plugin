@@ -17,9 +17,6 @@ public class RelativizesASetOfScripts {
 		Set<String> relativeScripts = new LinkedHashSet<String>();
 		
 		for (String absoluteScript : absoluteScripts) {
-//			if (absoluteScript.startsWith("script:")) {
-//				relativeScripts.add(absoluteScript);
-//			} else {
 				File script = new File(normalize(absoluteScript));
 				
 				if(!webUrl(absoluteScript) && script.exists()) {
@@ -27,7 +24,6 @@ public class RelativizesASetOfScripts {
 				} else {
 					relativeScripts.add(absoluteScript);
 				}
-//			}			
 		}
 		return relativeScripts;
 	}
