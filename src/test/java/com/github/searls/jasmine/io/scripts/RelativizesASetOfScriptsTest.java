@@ -99,7 +99,7 @@ public class RelativizesASetOfScriptsTest {
 	public void ignoresLeadingHttpsProtocol() throws Exception {
 		stubbingForFiles(true);
 		HashSet<String> sources = new HashSet<String>(asList("https://google.com"));
-		//when(relativizesFilePaths.relativize(isA(File.class),isA(File.class))).thenThrow(new RuntimeException("Not supported!"));
+		when(relativizesFilePaths.relativize(isA(File.class),isA(File.class))).thenThrow(new RuntimeException("Not supported!"));
 
 		Set<String> result = subject.relativize(from, sources);
 		
