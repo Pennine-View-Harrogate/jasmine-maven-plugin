@@ -48,7 +48,7 @@ public class SpecRunnerExecutorTest {
 	@Before
 	public void stubResourceStreams() throws IOException {
 		when(ioUtilsWrapper.toString(isA(String.class))).thenReturn(BUILD_REPORT_JS_CONTENTS,JUNIT_RESULTS);
-		driver = new HtmlUnitDriver(BrowserVersion.INTERNET_EXPLORER_8);
+		driver = new HtmlUnitDriver();
 		driver.setJavascriptEnabled(true);
 	}
 	
